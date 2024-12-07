@@ -1,0 +1,48 @@
+.delivery-page {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .delivery-form,
+  .menu-categories {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .delivery-form label,
+  .menu-categories h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .delivery-form input,
+  .delivery-form textarea,
+  .delivery-form select,
+  .delivery-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .delivery-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .delivery-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .menu-categories {
+    margin-top: 20px;
+  }
+  
+  .menu-category {
+    margin-bottom: 20px;
+  }

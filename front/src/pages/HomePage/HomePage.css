@@ -1,0 +1,31 @@
+.home-page {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.slider {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
+  padding: 60px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.about-section {
+  margin-top: 40px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h2 {
+  font-size: 2em;
+  color: #333;
+}
+
+.about-section p {
+  font-size: 1.2em;
+  color: #666;
+}
