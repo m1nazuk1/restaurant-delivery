@@ -1,0 +1,64 @@
+/* Общие стили для формы */
+.visitor-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+  
+  .visitor-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .visitor-form__title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .visitor-form__form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .visitor-form__input {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+  }
+  
+  .visitor-form__input:focus {
+    outline: none;
+    border-color: #007BFF;
+  }
+  
+  .visitor-form__button {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .visitor-form__button:hover {
+    background-color: #0056b3;
+  }
+  
+  .visitor-form__button:focus {
+    outline: none;
+  }
