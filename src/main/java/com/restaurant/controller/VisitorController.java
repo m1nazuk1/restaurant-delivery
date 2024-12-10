@@ -31,4 +31,15 @@ public class VisitorController {
     public List<VisitorResponseDTO> getAllVisitors() {
         return visitorService.getAllVisitors();
     }
+
+
+    @PutMapping("/{id}")
+    public VisitorResponseDTO updateVisitor(@PathVariable Long id, @RequestBody VisitorRequestDTO dto) {
+        return visitorService.updateVisitor(dto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteVisitor(@PathVariable Long id) {
+        visitorService.deleteVisitor(id);
+    }
 }

@@ -2,6 +2,7 @@ package com.restaurant.service;
 
 import com.restaurant.dto.OrderItemDTO.OrderItemRequestDTO;
 import com.restaurant.dto.OrderItemDTO.OrderItemResponseDTO;
+import com.restaurant.entity.Table;
 import com.restaurant.exception.EntityNotFoundException;
 import com.restaurant.entity.Delivery;
 import com.restaurant.entity.MenuItem;
@@ -56,6 +57,13 @@ public class OrderItemService {
         deliveryRepository.save(delivery);
 
         return toResponseDTO(orderItem);
+    }
+
+    public void deleteOrderItem(Long id) {
+        OrderItem orderItem = orderItemRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Order item not found"));
+
+        orderItemRepository.delete(orderItem);
     }
 
     @Transactional

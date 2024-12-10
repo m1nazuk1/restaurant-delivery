@@ -29,4 +29,14 @@ public class DeliveryController {
     public DeliveryResponseDTO createDelivery(@RequestBody DeliveryRequestDTO deliveryRequestDTO) {
         return deliveryService.createDelivery(deliveryRequestDTO);
     }
+
+    @PutMapping("/{id}")
+    public DeliveryResponseDTO updateDelivery(@PathVariable Long id, @RequestBody DeliveryRequestDTO dto) {
+        return deliveryService.updateDelivery(dto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDelivery(@PathVariable Long id) {
+
+    }
 }

@@ -2,7 +2,10 @@ package com.restaurant.service;
 
 import com.restaurant.dto.TableDTO.TableRequestDTO;
 import com.restaurant.dto.TableDTO.TableResponseDTO;
+import com.restaurant.dto.VisitorDTO.VisitorRequestDTO;
+import com.restaurant.dto.VisitorDTO.VisitorResponseDTO;
 import com.restaurant.entity.Table;
+import com.restaurant.entity.Visitor;
 import com.restaurant.exception.EntityNotFoundException;
 import com.restaurant.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,18 @@ public class TableService {
         table.setDescription(dto.getDescription());
         table.setStatus(dto.getStatus());
         tableRepository.save(table);
+        return toResponseDTO(table);
+    }
+
+
+    public TableResponseDTO updateTable(TableRequestDTO dto, Long id) {
+        Table table = tableRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Table not found"));
+
+        table.setDescription(dto.getDescription());
+        table.setStatus(dto.getStatus());
+        table.setNumber(dto.getNumber());
+        table = tableRepository.save(table);
         return toResponseDTO(table);
     }
 

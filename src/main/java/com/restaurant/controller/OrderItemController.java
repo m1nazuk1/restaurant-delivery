@@ -34,4 +34,9 @@ public class OrderItemController {
     public List<OrderItemResponseDTO> getAllOrderItems() {
         return orderItemService.getAllOrderItems();
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteOrderItem(@PathVariable Long id) {
+        orderItemService.deleteOrderItem(id);
+    }
 }

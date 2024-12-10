@@ -1,11 +1,13 @@
 package com.restaurant.service;
 
+import com.restaurant.dto.BookingDTO.BookingRequestDTO;
+import com.restaurant.dto.BookingDTO.BookingResponseDTO;
 import com.restaurant.dto.DeliveryDTO.DeliveryRequestDTO;
 import com.restaurant.dto.DeliveryDTO.DeliveryResponseDTO;
-import com.restaurant.entity.Delivery;
-import com.restaurant.entity.Visitor;
+import com.restaurant.entity.*;
 import com.restaurant.exception.EntityNotFoundException;
 import com.restaurant.repository.DeliveryRepository;
+import com.restaurant.repository.OrderItemRepository;
 import com.restaurant.repository.VisitorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,10 @@ public class DeliveryService {
 
     @Autowired
     private VisitorRepository visitorRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+    @Autowired
+    private OrderItemService orderItemService;
 
     public List<DeliveryResponseDTO> getAllDeliveries() {
         List<Delivery> deliveries = deliveryRepository.findAll();
@@ -34,6 +40,31 @@ public class DeliveryService {
     public DeliveryResponseDTO getDeliveryById(Long id) {
         Delivery delivery = deliveryRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Delivery not found"));
+        return toResponseDTO(delivery);
+    }
+
+    public void deleteDelivery(Long id) {
+        Delivery delivery = deliveryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Booking not found"));
+
+        deliveryRepository.delete(delivery);
+    }
+
+
+    public DeliveryResponseDTO updateDelivery(DeliveryRequestDTO deliveryRequestDTO, Long id){
+        Delivery delivery = deliveryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Booking not found"));
+
+        delivery.setAddress(deliveryRequestDTO.getAddress());
+        delivery.setComment(deliveryRequestDTO.getComment());
+        delivery.setStatus("true");
+        delivery.setType(deliveryRequestDTO.getType());
+        List<OrderItem> orderItem = orderItemRepository.findAllByDeliveryId(id);
+        delivery.setOrderItems(orderItem);
+        delivery.setPaymentMethod(deliveryRequestDTO.getPaymentMethod());
+        Visitor visitor = visitorRepository.findById(deliveryRequestDTO.getVisitorId()).get();
+        delivery.setVisitor(visitor);
+        delivery = deliveryRepository.save(delivery);
         return toResponseDTO(delivery);
     }
 

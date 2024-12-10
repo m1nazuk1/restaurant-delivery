@@ -2,6 +2,7 @@ package com.restaurant.service;
 
 import com.restaurant.dto.BookingDTO.BookingRequestDTO;
 import com.restaurant.dto.BookingDTO.BookingResponseDTO;
+import com.restaurant.entity.MenuCategory;
 import com.restaurant.entity.Table;
 import com.restaurant.entity.Visitor;
 import com.restaurant.exception.EntityNotFoundException;
@@ -30,6 +31,27 @@ public class BookingService {
     public List<BookingResponseDTO> getAllBookings() {
         List<Booking> bookings = bookingRepository.findAll();
         return bookings.stream().map(this::toResponseDTO).collect(Collectors.toList());
+    }
+
+    public void deleteBookings(Long id){
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Booking not found"));
+
+        bookingRepository.delete(booking);
+    }
+
+    public BookingResponseDTO updateBooking(BookingRequestDTO bookingRequestDTO, Long id){
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Booking not found"));
+
+        booking.setEndTime(bookingRequestDTO.getEndTime());
+        booking.setStartTime(bookingRequestDTO.getStartTime());
+        Table table = tableRepository.findById(bookingRequestDTO.getTableId()).get();
+        booking.setTable(table);
+        Visitor visitor = visitorRepository.findById(bookingRequestDTO.getVisitorId()).get();
+        booking.setVisitor(visitor);
+        booking = bookingRepository.save(booking);
+        return toResponseDTO(booking);
     }
 
     public BookingResponseDTO getBookingById(Long id) {

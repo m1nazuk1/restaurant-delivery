@@ -17,6 +17,7 @@ public class MenuItemController {
 
     @GetMapping
     public List<MenuItemResponseDTO> getAllMenuItems() {
+        System.out.println(menuItemService.getAllMenuItems());
         return menuItemService.getAllMenuItems();
     }
 

@@ -32,6 +32,11 @@ public class TableController {
         return tableService.getAllTables();
     }
 
+    @PutMapping("/{id}")
+    public TableResponseDTO updateTable(@PathVariable Long id, @RequestBody TableRequestDTO dto) {
+        return tableService.updateTable(dto, id);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTable(@PathVariable Long id) {
